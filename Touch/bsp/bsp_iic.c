@@ -234,7 +234,6 @@ void CT_IIC_Init(void)
 	
 	gpio_init.Pin = I2C_SDA_PIN;	
 	HAL_GPIO_Init(I2C_SDA_GPIO, &gpio_init);
-//	delay_us(500);
     i2c_Stop();  
 }
 

@@ -1,7 +1,7 @@
 Dependencies for Project 'Touch', Target 'Touch': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32h750xx.s)(0x65571A06)(--cpu Cortex-M7.fp.dp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include--pd "__UVISION_VERSION SETA 536" --pd "_RTE_ SETA 1" --pd "STM32H750xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32h750xx.lst --xref -o touch\startup_stm32h750xx.o --depend touch\startup_stm32h750xx.d)
-F (../Core/Src/main.c)(0x655C41C8)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\main.o --omf_browse touch\main.crf --depend touch\main.d)
+F (../Core/Src/main.c)(0x655C4FFF)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\main.o --omf_browse touch\main.crf --depend touch\main.d)
 I (../Core/Inc/main.h)(0x65571C17)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x63EB1DA7)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x65571A03)
@@ -39,7 +39,7 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x63EB1DA7)
 I (D:\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Core/Inc/usart.h)(0x655718E2)
 I (../Core/Inc/gpio.h)(0x6555CD0D)
-I (../bsp/gt911.h)(0x655C4537)
+I (../bsp/gt911.h)(0x655C4FD1)
 I (../bsp/bsp_iic.h)(0x655C38EB)
 F (../Core/Src/gpio.c)(0x65571A02)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\gpio.o --omf_browse touch\gpio.crf --depend touch\gpio.d)
 I (../Core/Inc/gpio.h)(0x6555CD0D)
@@ -902,7 +902,7 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h)(0x63EB1DA7)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h)(0x63EB1DA7)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x63EB1DA7)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x63EB1DA7)
-F (..\bsp\gt911.c)(0x655C456B)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\gt911.o --omf_browse touch\gt911.crf --depend touch\gt911.d)
+F (..\bsp\gt911.c)(0x655C714F)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\gt911.o --omf_browse touch\gt911.crf --depend touch\gt911.d)
 I (../Core/Inc/main.h)(0x65571C17)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x63EB1DA7)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x65571A03)
@@ -939,9 +939,9 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x63EB1DA7)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x63EB1DA7)
 I (D:\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (D:\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (..\bsp\gt911.h)(0x655C4537)
+I (..\bsp\gt911.h)(0x655C4FD1)
 I (..\bsp\bsp_iic.h)(0x655C38EB)
-F (..\bsp\bsp_iic.c)(0x655C395F)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\bsp_iic.o --omf_browse touch\bsp_iic.crf --depend touch\bsp_iic.d)
+F (..\bsp\bsp_iic.c)(0x655C6A92)(--c99 --gnu -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../bsp-I.\RTE\_Touch-ID:\keilpacks\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\keilpacks\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o touch\bsp_iic.o --omf_browse touch\bsp_iic.crf --depend touch\bsp_iic.d)
 I (../Core/Inc/main.h)(0x65571C17)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x63EB1DA7)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x65571A03)

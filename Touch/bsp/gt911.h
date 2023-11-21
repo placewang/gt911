@@ -73,7 +73,7 @@ typedef struct
 
   
 unsigned char GT911_Init(void);
-unsigned char GT911_Scan(unsigned char mode); 
+unsigned char GT911_Scan(void); 
 
 #endif
 

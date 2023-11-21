@@ -283,5 +283,128 @@ unsigned char GT911_Init(void)
 
 	return 1;  
 }
+/*
+*	函 数 名: TOUCH_PenInt
+*	功能说明: 判断触摸按下
+*	形    参: 无
+*	返 回 值: 0表示无触笔按下，1表示有触笔按下
+*/
+uint8_t TOUCH_PenInt(void)
+{
+	if ((TP_INT_GPIO_PORT->IDR & TP_INT_PIN) == 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+/*
+*	函 数 名: GT911_Scan
+*	功能说明: 读取GT911触摸数据。读取全部的数据，需要 720us左右
+*	形    参: 无
+*	返 回 值: 无
+*/
+unsigned char GT911_Scan(void)
+{
+	uint8_t buf[48];
+	uint8_t clear_flag = 0;
+	g_GT911.TimerCount = 0;
 
+	if (TOUCH_PenInt() == 1)
+	{		
+        //	/* 不用INT引脚，读状态寄存器 */
+        //	GT911_ReadReg(GT911_READ_XY_REG, buf, 1);
+        //	if (buf[0] == 0)
+        //	{
+
+        #if 1		/* 只读1点 */
+            GT911_ReadReg(GT911_READ_XY_REG, buf, 8);
+        #else		/* 读5个触摸点 */
+            GT911_ReadReg(GT911_READ_XY_REG, buf, 40);
+        #endif
+            
+            GT911_WriteReg(GT911_READ_XY_REG, &clear_flag,	1);		/* 读完坐标后必须写0清除 */
+	
+	/*
+		0x814E R/W Bufferstatus Large_Detect number of touch points 
+			Bit7: Buffer status，1表示坐标（或按键）已经准备好，主控可以读取；0表示未就绪，数据无效。当主控读取完坐标后，必须通过I2C将此标志（或整个字节）写为0。
+			Bit4: HaveKey, 1表示有按键，0表示无按键（已经松键）。
+			Bit3~0: Number of touch points, 屏上的坐标点个数
+	
+		0x814F R Point1 track id                    0x8157 R Point2 track id 
+		0x8150 R Point1Xl 触摸点 1，X 坐标低 8 位   0x8158 R Point2Xl 触摸点 2，X 坐标低 8 位 
+		0x8151 R Point1Xh 触摸点 1，X 坐标高 8 位   0x8159 R Point2Xh 触摸点 2，X 坐标高 8 位 
+		0x8152 R Point1Yl 触摸点 1，Y 坐标低 8 位   0x815A R Point2Yl 触摸点 2，Y 坐标低 8 位 
+		0x8153 R Point1Yh 触摸点 1，Y 坐标高 8 位   0x815B R Point2Yh 触摸点 2，Y 坐标高 8 位 
+		0x8154 R Point1 触摸点 1，触摸面积低 8 位   0x815C R Point2 触摸点 2，触摸面积低 8 位 
+		0x8155 R Point1 触摸点 1，触摸面积高 8 位   0x815D R Point2 触摸点 2，触摸面积高 8 位 
+		0x8156 ----                                 0x815E ---- 
+
+		0x815F R Point3 track id         		  0x8167 R Point4 track id          
+		0x8160 R Point3Xl 触摸点 3，X 坐标低 8 位 0x8168 R Point4Xl 触摸点 4，X 坐标低 8 位 
+		0x8161 R Point3Xh 触摸点 3，X 坐标高 8 位 0x8169 R Point4Xh 触摸点 4，X 坐标高 8 位 
+		0x8162 R Point3Yl 触摸点 3，Y 坐标低 8 位 0x816A R Point4Yl 触摸点 4，Y 坐标低 8 位 
+		0x8163 R Point3Yh 触摸点 3，Y 坐标高 8 位 0x816B R Point4Yh 触摸点 4，Y 坐标高 8 位
+		0x8164 R Point3 触摸点 3，触摸面积低 8 位 0x816C R Point4 触摸点 4，触摸面积低 8 位 
+		0x8165 R Point3 触摸点 3，触摸面积高 8 位 0x816D R Point4 触摸点 4，触摸面积高 8 位 
+		0x8166 ----                               0x816E ----
+
+		0x816F R Point5 track id 
+		0x8170 R Point5Xl 触摸点 5，X 坐标低 8 位 
+		0x8171 R Point5Xh 触摸点 5，X 坐标高 8 位 
+		0x8172 R Point5Yl 触摸点 5，Y 坐标低 8 位 
+		0x8173 R Point5Yh 触摸点 5，Y 坐标高 8 位 
+		0x8174 R Point5 触摸点 5，触摸面积低 8 位 
+		0x8175 R Point5 触摸点 5，触摸面积高 8 位 
+		0x8176 --
+		
+	*/
+	g_GT911.TouchpointFlag = buf[0];
+	g_GT911.Touchkeystate = buf[1];
+
+	g_GT911.X0 = ((uint16_t)buf[3] << 8) + buf[2];
+	g_GT911.Y0 = ((uint16_t)buf[5] << 8) + buf[4];
+	g_GT911.P0 = ((uint16_t)buf[7] << 8) + buf[6];
+
+	#if 0	/* 其余4点一般不用 */
+		g_GT911.X1 = ((uint16_t)buf[9] << 8) + buf[10];
+		g_GT911.Y1 = ((uint16_t)buf[11] << 8) + buf[12];
+		g_GT911.P1 = ((uint16_t)buf[13] << 8) + buf[14];
+
+		g_GT911.X2 = ((uint16_t)buf[17] << 8) + buf[16];
+		g_GT911.Y2 = ((uint16_t)buf[19] << 8) + buf[18];
+		g_GT911.P2 = ((uint16_t)buf[21] << 8) + buf[20];
+
+		g_GT911.X3 = ((uint16_t)buf[24] << 8) + buf[23];
+		g_GT911.Y3 = ((uint16_t)buf[26] << 8) + buf[25];
+		g_GT911.P3 = ((uint16_t)buf[28] << 8) + buf[27];
+
+		g_GT911.X4 = ((uint16_t)buf[31] << 8) + buf[30];
+		g_GT911.Y4 = ((uint16_t)buf[33] << 8) + buf[32];
+		g_GT911.P4 = ((uint16_t)buf[35] << 8) + buf[34];
+	#endif
+
+		/* 坐标转换 :
+			电容触摸板左下角是 (0，0);  右上角是 (479，799)
+			需要转到LCD的像素坐标 (左上角是 (0，0), 右下角是 (799，479)
+		*/
+			
+	if (g_GT911.X0 > 799)
+		g_GT911.X0 = 799;
+			
+	if (g_GT911.Y0 > 479)
+		g_GT911.Y0 = 479;		
+ 
+//            for ( uint8_t i = 0; i < 34; i++)
+//            {
+//                printf("%02X ", buf[i]);
+//            }
+//            printf("\r\n");
+            printf("(%5d,%5d,%3d) ",  g_GT911.X0, g_GT911.Y0, g_GT911.P0);
+//            printf("(%5d,%5d,%3d) ",  g_GT911.X1, g_GT911.Y1, g_GT911.P1);
+//            printf("(%5d,%5d,%3d) ",  g_GT911.X2, g_GT911.Y2, g_GT911.P2);
+//            printf("(%5d,%5d,%3d) ",  g_GT911.X3, g_GT911.Y3, g_GT911.P3);
+//            printf("(%5d,%5d,%3d) ",  x, y, g_GT911.P4);
+
+   }
+}
 
